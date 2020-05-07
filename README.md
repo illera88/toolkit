@@ -58,6 +58,8 @@ $ npm install @actions/io --save
 
 Provides functions for downloading and caching tools.  e.g. setup-* actions. Read more [here](packages/tool-cache)
 
+See @actions/cache for caching workflow dependencies. 
+
 ```bash
 $ npm install @actions/tool-cache --save
 ```
@@ -83,7 +85,7 @@ $ npm install @actions/artifact --save
 
 :dart: [@actions/cache](packages/cache) 
 
-Provides functions to cache dependencies and build outputs to improve workflow execution time.. Read more [here](packages/cache)
+Provides functions to cache dependencies and build outputs to improve workflow execution time. Read more [here](packages/cache)
 
 ```bash
 $ npm install @actions/cache --save
