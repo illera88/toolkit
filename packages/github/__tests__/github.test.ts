@@ -43,7 +43,6 @@ describe('@actions/github', () => {
     if (!token) {
       return
     }
-
     const octokit = new GitHub(token)
     const branch = await octokit.repos.getBranch({
       owner: 'actions',
@@ -85,23 +84,6 @@ describe('@actions/github', () => {
     expect(failed).toBeTruthy()
   })
 
-  it('basic REST client with proxy', async () => {
-    const token = getToken()
-    if (!token) {
-      return
-    }
-
-    process.env['https_proxy'] = proxyUrl
-    const octokit = new GitHub(token)
-    const branch = await octokit.repos.getBranch({
-      owner: 'actions',
-      repo: 'toolkit',
-      branch: 'master'
-    })
-    expect(branch.data.name).toBe('master')
-    expect(proxyConnects).toEqual(['api.github.com:443'])
-  })
-
   it('basic GraphQL client', async () => {
     const token = getToken()
     if (!token) {
@@ -141,21 +123,6 @@ describe('@actions/github', () => {
       failed = true
     }
     expect(failed).toBeTruthy()
-  })
-
-  it('basic GraphQL client with proxy', async () => {
-    const token = getToken()
-    if (!token) {
-      return
-    }
-
-    process.env['https_proxy'] = proxyUrl
-    const octokit = new GitHub(token)
-    const repository = await octokit.graphql(
-      '{repository(owner:"actions", name:"toolkit"){name}}'
-    )
-    expect(repository).toEqual({repository: {name: 'toolkit'}})
-    expect(proxyConnects).toEqual(['api.github.com:443'])
   })
 
   it('basic REST client enterprise', async () => {
